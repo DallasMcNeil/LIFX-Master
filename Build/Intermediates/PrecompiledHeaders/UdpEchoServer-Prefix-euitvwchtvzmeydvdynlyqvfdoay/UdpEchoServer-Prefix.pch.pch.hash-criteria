@@ -1,0 +1,23 @@
+-x
+objective-c
+-arch
+x86_64
+-std=gnu99
+-fobjc-arc
+-gmodules
+-fpascal-strings
+-O0
+-DDEBUG=1
+-isysroot
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk
+-fasm-blocks
+-mmacosx-version-min=10.7
+-g
+-iquote
+-iquote
+-I/Users/dallasmcneil/Documents/Developer/Apps/LIFX Master/Build/Products/Debug/include
+-F/Users/dallasmcneil/Documents/Developer/Apps/LIFX Master/Build/Products/Debug
+x86_64-apple-darwin15.0.0
+"4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.1.76)"
+SDK_PRODUCT_BUILD_VERSION=15A278
+15A278
