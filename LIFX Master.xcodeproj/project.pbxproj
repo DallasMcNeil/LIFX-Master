@@ -79,6 +79,7 @@
 		B540210C1BF91800006A235E /* LIFXKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B540204A1BF91800006A235E /* LIFXKit-Info.plist */; };
 		B540210D1BF91800006A235E /* build_frameworks.sh in Resources */ = {isa = PBXBuildFile; fileRef = B540204C1BF91800006A235E /* build_frameworks.sh */; };
 		B540214C1BF91B8B006A235E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540214B1BF91B8B006A235E /* libz.tbd */; };
+		B54C97031C22919500EF13B1 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = B54C97021C22919500EF13B1 /* LICENSE.md */; };
 		B5A738701BF897C700BB80C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7386F1BF897C700BB80C5 /* AppDelegate.swift */; };
 		B5A738721BF897C700BB80C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5A738711BF897C700BB80C5 /* Assets.xcassets */; };
 		B5A738751BF897C700BB80C5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A738731BF897C700BB80C5 /* MainMenu.xib */; };
@@ -267,6 +268,7 @@
 		B540204E1BF91800006A235E /* LIFXKit-iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LIFXKit-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		B540204F1BF91800006A235E /* LIFXKit-OSX-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LIFXKit-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		B540214B1BF91B8B006A235E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B54C97021C22919500EF13B1 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		B5A7386C1BF897C700BB80C5 /* LIFX Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LIFX Master.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A7386F1BF897C700BB80C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5A738711BF897C700BB80C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		B5401E811BF917FF006A235E /* LIFXKit */ = {
 			isa = PBXGroup;
 			children = (
+				B54C97021C22919500EF13B1 /* LICENSE.md */,
 				B5401E821BF917FF006A235E /* Classes-Common */,
 				B5401EE51BF917FF006A235E /* Classes-OSX */,
 				B5401EE81BF917FF006A235E /* CocoaAsyncSocket */,
@@ -576,7 +579,6 @@
 		B5A738631BF897C700BB80C5 = {
 			isa = PBXGroup;
 			children = (
-				B540214B1BF91B8B006A235E /* libz.tbd */,
 				B5A7386E1BF897C700BB80C5 /* LIFX Master */,
 				B5A7386D1BF897C700BB80C5 /* Products */,
 				B5401E811BF917FF006A235E /* LIFXKit */,
@@ -599,6 +601,7 @@
 				B5A738711BF897C700BB80C5 /* Assets.xcassets */,
 				B5A738731BF897C700BB80C5 /* MainMenu.xib */,
 				B5A738761BF897C700BB80C5 /* Info.plist */,
+				B540214B1BF91B8B006A235E /* libz.tbd */,
 			);
 			path = "LIFX Master";
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				B54020D91BF91800006A235E /* AsyncUdpSocket.m in Sources */,
 				B54020661BF91800006A235E /* LFXNetworkContext.m in Sources */,
 				B54020FF1BF91800006A235E /* NSString+LFXExtensions.m in Sources */,
+				B54C97031C22919500EF13B1 /* LICENSE.md in Sources */,
 				B540205B1BF91800006A235E /* LFXGatewayDiscoveryController.m in Sources */,
 				B54020651BF91800006A235E /* LFXMessageRateManager.m in Sources */,
 				B540207A1BF91800006A235E /* Structle.m in Sources */,

@@ -104,44 +104,105 @@ typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 @class LFXHSBKColor;
 @class NSNotification;
 @class LFXLightCollection;
-@class NSWindow;
 
 SWIFT_CLASS("_TtC11LIFX_Master11AppDelegate")
 @interface AppDelegate : NSObject <NSMenuDelegate, NSApplicationDelegate, LFXLightCollectionObserver, LFXLightObserver>
-@property (nonatomic, weak) IBOutlet NSWindow * __null_unspecified window;
+
+/// Status item that represents the menu bar item
 @property (nonatomic, readonly, strong) NSStatusItem * __nonnull statusItem;
+
+/// Menu of the status itme
 @property (nonatomic, readonly, strong) NSMenu * __nonnull menu;
+
+/// Light submenu, displays all light information
 @property (nonatomic, strong) NSMenu * __nonnull lightMenu;
+
+/// Effects submenu, displays all effects
 @property (nonatomic, readonly, strong) NSMenu * __nonnull effectMenu;
+
+/// Colour submenu, displays HSB colour sliders
 @property (nonatomic, readonly, strong) NSMenu * __nonnull colourMenu;
+
+/// All lights on the local network
 @property (nonatomic, copy) NSArray<LFXLight *> * __nonnull lights;
+
+/// Represents the labels of light menu items with a tick
 @property (nonatomic, copy) NSDictionary<NSString *, NSNumber *> * __nonnull selectedLights;
+
+/// All lights that are approved to be used by the user
 @property (nonatomic, copy) NSArray<LFXLight *> * __nonnull approvedLights;
+
+/// The last highlights menu item
 @property (nonatomic, strong) NSMenuItem * __nullable selectedItem;
+
+/// The on/off state of all lights
 @property (nonatomic) BOOL toggleState;
+
+/// The corresponding name of the effect displayed to the user
 @property (nonatomic, copy) NSArray<NSString *> * __nonnull effectNames;
+
+/// The corresponding update time of each effect
 @property (nonatomic, copy) NSArray<NSNumber *> * __nonnull updateTimings;
+
+/// A timer that manages the update of light effects
 @property (nonatomic, strong) NSTimer * __nonnull timer;
+
+/// The current effect option being used
 @property (nonatomic) NSInteger effectOption;
+
+/// The current effects time
 @property (nonatomic) NSInteger effectCount;
+
+/// Hue slider in colour menu
 @property (nonatomic, readonly, strong) NSSlider * __nonnull sliderH;
+
+/// Saturation slider in colour menu
 @property (nonatomic, readonly, strong) NSSlider * __nonnull sliderS;
+
+/// Brightness slider in colour menu
 @property (nonatomic, readonly, strong) NSSlider * __nonnull sliderB;
+
+/// The colour of the lights determined by the HSB sliders
 @property (nonatomic, readonly, strong) LFXHSBKColor * __null_unspecified lightColour;
 - (void)applicationDidFinishLaunching:(NSNotification * __nonnull)aNotification;
-- (void)applicationWillTerminate:(NSNotification * __nonnull)aNotification;
+
+/// Called if light is discovered on network
 - (void)lightCollection:(LFXLightCollection * __null_unspecified)lightCollection didAddLight:(LFXLight * __null_unspecified)light;
+
+/// Called if light is removed from network
 - (void)lightCollection:(LFXLightCollection * __null_unspecified)lightCollection didRemoveLight:(LFXLight * __null_unspecified)light;
+
+/// Updates which lights are selected in the lights menu
 - (void)updateSelectedLights;
+
+/// Updates menu lighting options as new lights are discovered on the network
 - (void)updateMenuLightOptions;
+
+/// Called when a light is selected, approved or diapproved for use
 - (void)lightPicked;
+
+/// Delegate method called when item is highlited, updates selectedItem to last highlighted item
 - (void)menu:(NSMenu * __nonnull)menu willHighlightItem:(NSMenuItem * __nullable)item;
+
+/// Terminated application
 - (void)quit;
+
+/// Sets all approvedLights to colour over duration
 - (void)setAllLights:(LFXHSBKColor * __nonnull)color duration:(NSTimeInterval)duration;
+
+/// Sets the current effect based on last selected menu item
 - (void)setEffect;
+
+/// Toggles lights on or off depending on toggle state
 - (void)toggleLights;
+
+/// Sets timer for current effect option to update after a period of time
 - (void)setupTimingForOption:(NSInteger)option;
+
+/// Updates current lighting effect
 - (void)updateLightsEffect;
+
+/// Updates the colour of all approvedLights based on HSB slider values
 - (void)updateLightColour:(NSSlider * __nonnull)sender;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end

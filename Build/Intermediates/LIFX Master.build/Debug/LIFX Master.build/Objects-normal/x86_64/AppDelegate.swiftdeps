@@ -6,89 +6,85 @@ provides-nominal:
 provides-member:
 - ["C11LIFX_Master11AppDelegate", ""]
 provides-dynamic-lookup:
-- "lightCollection"
-- "lightCollection"
-- "approvedLights"
-- "setAllLights"
-- "sliderB"
-- "effectCount"
-- "toggleLights"
-- "effectMenu"
-- "sliderH"
-- "window"
-- "updateTimings"
-- "lightMenu"
-- "updateLightsEffect"
-- "lightPicked"
-- "colourMenu"
-- "setupTimingForOption"
 - "updateLightColour"
-- "quit"
+- "toggleLights"
+- "setAllLights"
 - "statusItem"
-- "selectedItem"
-- "applicationWillTerminate"
-- "updateSelectedLights"
-- "timer"
-- "updateMenuLightOptions"
-- "lightColour"
-- "lights"
-- "effectNames"
-- "toggleState"
-- "sliderS"
-- "selectedLights"
 - "applicationDidFinishLaunching"
+- "menu"
+- "menu"
+- "lights"
+- "effectMenu"
+- "approvedLights"
 - "effectOption"
-- "menu"
-- "menu"
+- "updateSelectedLights"
+- "colourMenu"
+- "effectCount"
+- "toggleState"
+- "lightPicked"
+- "lightCollection"
+- "lightCollection"
+- "quit"
+- "sliderH"
+- "sliderS"
+- "effectNames"
+- "lightMenu"
+- "timer"
+- "selectedLights"
+- "updateTimings"
+- "setupTimingForOption"
+- "selectedItem"
+- "updateLightsEffect"
 - "setEffect"
+- "updateMenuLightOptions"
+- "sliderB"
+- "lightColour"
 depends-top-level:
-- "random"
-- "%"
-- "LFXLightCollectionObserver"
-- "Int"
-- !private "print"
-- "Dictionary"
-- "LFXLightObserver"
-- "CGFloat"
-- !private "NSImage"
-- "NSApplicationDelegate"
-- !private "LFXPowerState"
-- !private "NSView"
-- !private "==="
-- !private "!"
-- "*"
-- "NSStatusBar"
-- !private "NSApplication"
-- "Bool"
-- "M_PI"
-- "BooleanLiteralType"
-- !private "!="
-- "NSTimeInterval"
-- "NSMenuDelegate"
-- "NSMenu"
-- "NSMenuItem"
-- !private "++"
-- !private "Selector"
-- "NSWindow"
-- "NSSlider"
-- !private "NSOffState"
-- "String"
 - "NSTimer"
-- "=="
-- "NSRect"
-- "NSObject"
-- "Double"
-- "NSStatusItem"
-- !private "NSOnState"
-- "/"
-- "StringLiteralType"
 - "LFXLight"
+- "NSObject"
+- "NSMenu"
+- "Int"
+- "%"
+- "StringLiteralType"
+- "random"
+- "NSMenuDelegate"
+- !private "Selector"
 - "LFXHSBKColor"
-- !private "LFXClient"
+- "LFXLightCollection"
 - "sin"
+- "LFXLightObserver"
+- "NSRect"
+- "Double"
+- "LFXLightCollectionObserver"
+- "*"
+- "CGFloat"
+- "=="
+- !private "LFXClient"
+- !private "NSOnState"
+- !private "NSView"
+- "NSApplicationDelegate"
+- "Bool"
+- !private "LFXPowerState"
+- !private "NSImage"
+- !private "++"
+- !private "NSApplication"
+- "String"
+- "NSTimeInterval"
+- !private "!"
+- "NSMenuItem"
 - "AppDelegate"
 - "NSNotification"
-- "LFXLightCollection"
+- !private "NSOffState"
+- "NSSlider"
+- "BooleanLiteralType"
+- "/"
+- "NSStatusBar"
+- !private "==="
+- "M_PI"
+- "NSStatusItem"
+- "Dictionary"
+- !private "!="
 depends-member:
 - ["PSs16AbsoluteValuable", "init"]
 - ["PSs9AnyObject", "CGFloat"]
@@ -172,7 +168,6 @@ depends-member:
 - !private ["PSs9AnyObject", "minValue"]
 - ["PSs9AnyObject", "numberOfItemsInMenu"]
 - !private ["PSs9AnyObject", "powerState"]
-- !private ["PSs9AnyObject", "print"]
 - ["PSs9AnyObject", "quit"]
 - ["PSs9AnyObject", "random"]
 - !private ["PSs9AnyObject", "saturation"]
@@ -208,7 +203,6 @@ depends-member:
 - ["PSs9AnyObject", "updateSelectedLights"]
 - ["PSs9AnyObject", "updateTimings"]
 - !private ["PSs9AnyObject", "view"]
-- ["PSs9AnyObject", "window"]
 - ["PSs9AnyObject", ""]
 - ["C11LIFX_Master11AppDelegate", "AppDelegate"]
 - ["C11LIFX_Master11AppDelegate", "Bool"]
@@ -235,7 +229,6 @@ depends-member:
 - ["C11LIFX_Master11AppDelegate", "NSTimeInterval"]
 - ["C11LIFX_Master11AppDelegate", "NSTimer"]
 - !private ["C11LIFX_Master11AppDelegate", "NSView"]
-- ["C11LIFX_Master11AppDelegate", "NSWindow"]
 - !private ["C11LIFX_Master11AppDelegate", "Selector"]
 - ["C11LIFX_Master11AppDelegate", "String"]
 - ["C11LIFX_Master11AppDelegate", "application"]
@@ -282,7 +275,6 @@ depends-member:
 - ["C11LIFX_Master11AppDelegate", "menuNeedsUpdate"]
 - ["C11LIFX_Master11AppDelegate", "menuWillOpen"]
 - ["C11LIFX_Master11AppDelegate", "numberOfItemsInMenu"]
-- !private ["C11LIFX_Master11AppDelegate", "print"]
 - ["C11LIFX_Master11AppDelegate", "quit"]
 - ["C11LIFX_Master11AppDelegate", "random"]
 - ["C11LIFX_Master11AppDelegate", "selectedItem"]
@@ -303,7 +295,6 @@ depends-member:
 - ["C11LIFX_Master11AppDelegate", "updateMenuLightOptions"]
 - ["C11LIFX_Master11AppDelegate", "updateSelectedLights"]
 - ["C11LIFX_Master11AppDelegate", "updateTimings"]
-- ["C11LIFX_Master11AppDelegate", "window"]
 - !private ["Sa", "Generator"]
 - !private ["Sa", "Index"]
 - !private ["Sa", "SubSequence"]
@@ -421,7 +412,6 @@ depends-member:
 - !private ["PSs11CVarArgType", "minValue"]
 - ["PSs11CVarArgType", "numberOfItemsInMenu"]
 - !private ["PSs11CVarArgType", "powerState"]
-- !private ["PSs11CVarArgType", "print"]
 - ["PSs11CVarArgType", "quit"]
 - ["PSs11CVarArgType", "random"]
 - !private ["PSs11CVarArgType", "saturation"]
@@ -457,7 +447,6 @@ depends-member:
 - ["PSs11CVarArgType", "updateSelectedLights"]
 - ["PSs11CVarArgType", "updateTimings"]
 - !private ["PSs11CVarArgType", "view"]
-- ["PSs11CVarArgType", "window"]
 - ["PSs11CVarArgType", ""]
 - !private ["VSs9Character", "deinit"]
 - !private ["PSs14CollectionType", "Generator"]
@@ -584,7 +573,6 @@ depends-member:
 - !private ["PSs23CustomStringConvertible", "minValue"]
 - ["PSs23CustomStringConvertible", "numberOfItemsInMenu"]
 - !private ["PSs23CustomStringConvertible", "powerState"]
-- !private ["PSs23CustomStringConvertible", "print"]
 - ["PSs23CustomStringConvertible", "quit"]
 - ["PSs23CustomStringConvertible", "random"]
 - !private ["PSs23CustomStringConvertible", "removeAll"]
@@ -622,7 +610,6 @@ depends-member:
 - ["PSs23CustomStringConvertible", "updateSelectedLights"]
 - ["PSs23CustomStringConvertible", "updateTimings"]
 - !private ["PSs23CustomStringConvertible", "view"]
-- ["PSs23CustomStringConvertible", "window"]
 - ["PSs23CustomStringConvertible", ""]
 - !private ["VSs10Dictionary", "Generator"]
 - !private ["VSs10Dictionary", "Index"]
@@ -731,7 +718,6 @@ depends-member:
 - !private ["PSs9Equatable", "minValue"]
 - ["PSs9Equatable", "numberOfItemsInMenu"]
 - !private ["PSs9Equatable", "powerState"]
-- !private ["PSs9Equatable", "print"]
 - ["PSs9Equatable", "quit"]
 - ["PSs9Equatable", "random"]
 - !private ["PSs9Equatable", "saturation"]
@@ -767,7 +753,6 @@ depends-member:
 - ["PSs9Equatable", "updateSelectedLights"]
 - ["PSs9Equatable", "updateTimings"]
 - !private ["PSs9Equatable", "view"]
-- ["PSs9Equatable", "window"]
 - ["PSs9Equatable", ""]
 - !private ["PSs41ExtendedGraphemeClusterLiteralConvertible", "init"]
 - ["Sf", "deinit"]
@@ -864,7 +849,6 @@ depends-member:
 - !private ["PSs8Hashable", "minValue"]
 - ["PSs8Hashable", "numberOfItemsInMenu"]
 - !private ["PSs8Hashable", "powerState"]
-- !private ["PSs8Hashable", "print"]
 - ["PSs8Hashable", "quit"]
 - ["PSs8Hashable", "random"]
 - !private ["PSs8Hashable", "saturation"]
@@ -900,7 +884,6 @@ depends-member:
 - ["PSs8Hashable", "updateSelectedLights"]
 - ["PSs8Hashable", "updateTimings"]
 - !private ["PSs8Hashable", "view"]
-- ["PSs8Hashable", "window"]
 - ["PSs8Hashable", ""]
 - !private ["SQ", "deinit"]
 - !private ["PSs9Indexable", "Generator"]
@@ -1005,7 +988,6 @@ depends-member:
 - ["PSo26LFXLightCollectionObserver", "menuNeedsUpdate"]
 - ["PSo26LFXLightCollectionObserver", "menuWillOpen"]
 - ["PSo26LFXLightCollectionObserver", "numberOfItemsInMenu"]
-- !private ["PSo26LFXLightCollectionObserver", "print"]
 - ["PSo26LFXLightCollectionObserver", "random"]
 - !private ["PSo26LFXLightCollectionObserver", "selectedItem"]
 - !private ["PSo26LFXLightCollectionObserver", "selectedLights"]
@@ -1081,7 +1063,6 @@ depends-member:
 - ["PSo16LFXLightObserver", "menuNeedsUpdate"]
 - ["PSo16LFXLightObserver", "menuWillOpen"]
 - ["PSo16LFXLightObserver", "numberOfItemsInMenu"]
-- !private ["PSo16LFXLightObserver", "print"]
 - ["PSo16LFXLightObserver", "random"]
 - !private ["PSo16LFXLightObserver", "selectedItem"]
 - !private ["PSo16LFXLightObserver", "selectedLights"]
@@ -1241,7 +1222,6 @@ depends-member:
 - ["PSo21NSApplicationDelegate", "menuNeedsUpdate"]
 - ["PSo21NSApplicationDelegate", "menuWillOpen"]
 - ["PSo21NSApplicationDelegate", "numberOfItemsInMenu"]
-- !private ["PSo21NSApplicationDelegate", "print"]
 - ["PSo21NSApplicationDelegate", "random"]
 - !private ["PSo21NSApplicationDelegate", "selectedItem"]
 - !private ["PSo21NSApplicationDelegate", "selectedLights"]
@@ -1376,7 +1356,6 @@ depends-member:
 - ["PSo14NSMenuDelegate", "menuNeedsUpdate"]
 - ["PSo14NSMenuDelegate", "menuWillOpen"]
 - ["PSo14NSMenuDelegate", "numberOfItemsInMenu"]
-- !private ["PSo14NSMenuDelegate", "print"]
 - ["PSo14NSMenuDelegate", "random"]
 - !private ["PSo14NSMenuDelegate", "selectedItem"]
 - !private ["PSo14NSMenuDelegate", "selectedLights"]
@@ -1428,7 +1407,6 @@ depends-member:
 - ["CSo8NSObject", "NSTimeInterval"]
 - ["CSo8NSObject", "NSTimer"]
 - !private ["CSo8NSObject", "NSView"]
-- ["CSo8NSObject", "NSWindow"]
 - !private ["CSo8NSObject", "Selector"]
 - ["CSo8NSObject", "String"]
 - !private ["CSo8NSObject", "action"]
@@ -1494,7 +1472,6 @@ depends-member:
 - !private ["CSo8NSObject", "minValue"]
 - ["CSo8NSObject", "numberOfItemsInMenu"]
 - !private ["CSo8NSObject", "powerState"]
-- !private ["CSo8NSObject", "print"]
 - ["CSo8NSObject", "quit"]
 - ["CSo8NSObject", "random"]
 - !private ["CSo8NSObject", "saturation"]
@@ -1530,7 +1507,6 @@ depends-member:
 - ["CSo8NSObject", "updateSelectedLights"]
 - ["CSo8NSObject", "updateTimings"]
 - !private ["CSo8NSObject", "view"]
-- ["CSo8NSObject", "window"]
 - ["CSo8NSObject", ""]
 - ["PSo16NSObjectProtocol", "CGFloat"]
 - ["PSo16NSObjectProtocol", "Double"]
@@ -1613,7 +1589,6 @@ depends-member:
 - !private ["PSo16NSObjectProtocol", "minValue"]
 - ["PSo16NSObjectProtocol", "numberOfItemsInMenu"]
 - !private ["PSo16NSObjectProtocol", "powerState"]
-- !private ["PSo16NSObjectProtocol", "print"]
 - ["PSo16NSObjectProtocol", "quit"]
 - ["PSo16NSObjectProtocol", "random"]
 - !private ["PSo16NSObjectProtocol", "saturation"]
@@ -1649,7 +1624,6 @@ depends-member:
 - ["PSo16NSObjectProtocol", "updateSelectedLights"]
 - ["PSo16NSObjectProtocol", "updateTimings"]
 - !private ["PSo16NSObjectProtocol", "view"]
-- ["PSo16NSObjectProtocol", "window"]
 - ["PSo16NSObjectProtocol", ""]
 - !private ["PSo19NSPasteboardReading", "init"]
 - !private ["PSo19NSPasteboardWriting", "init"]
@@ -2001,4 +1975,4 @@ depends-external:
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.swiftmodule"
 - "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreImage.swiftmodule"
-interface-hash: "a4ca61852533c0368bd884f0c75d19c6"
+interface-hash: "048d22a07d61a3c0920fbe35be093ab7"
