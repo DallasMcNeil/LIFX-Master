@@ -1,5 +1,5 @@
 version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
 options: "a90e467dfc4a209081bfc85f27628ca1"
-build_time: [503649811, 824404000]
+build_time: [503650618, 46286000]
 inputs:
-  "/Users/dallasmcneil/Documents/Developer/Apps/LIFX Master/LIFX Master/AppDelegate.swift": [503649558, 0]
+  "/Users/dallasmcneil/Documents/Developer/Apps/LIFX Master/LIFX Master/AppDelegate.swift": [503650162, 0]
