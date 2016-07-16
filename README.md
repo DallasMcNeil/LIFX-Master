@@ -9,7 +9,7 @@ LIFX lightbulbs are available at http://www.lifx.com
 # Building
 LIFX Master requires Xcode 7.x to build. All project files should be configured correctly.
 
-A prebuilt copy of LIFX Master will become available in the near future.
+A prebuilt copy is available [here](http://www.dallasmcneil.com/downloads/LIFX%20Master.zip).
 
 # System Requirements
 Requires OS X 10.8 or greater
