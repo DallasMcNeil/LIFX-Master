@@ -11,7 +11,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCollectionObserver, NSMenuDelegate {
 
     /// Status item that represents the menu bar item
-    let statusItem:NSStatusItem = NSStatusBar.systemStatusBar().statusItemWithLength(24)
+    let statusItem:NSStatusItem = NSStatusBar.system().statusItem(withLength: 24)
     
     /// Menu of the status itme
     let menu:NSMenu = NSMenu()
@@ -39,23 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
     
     /// The on/off state of all lights
     var toggleState = false
-    /*
-    CREATING ADDITIONAL EFFECTS
-    
-    Effects are managed by a closure system where each effect is updated periodically and sets the colour of the lights
-    All closure recieve the current time of the lights (An Int value 0 or greater which is increased by 1 every time the lights are updated) and a reference to the AppDelegate to access lighting methods and approved lights
-    All closures are placed in an array
-    The update time periods are in another array and correspond to the same index in the effects array
-    The name of each effect is in another array and corresponds to the same index in the effects array
-    
-    To add your own effects, simply add to the arrays your effect closure, update time and effect name
-    Here is a template for the closures array
-    
-    {(time:Int,delegate:AppDelegate) in
-        *YOUR CODE GOES HERE*
-    }
-    
-    */
     
     /// A set of closures that form the effects available to the user
     var effects:[(Int,AppDelegate)->()] = [
@@ -66,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
             delegate.setAllLights(LFXHSBKColor(hue: CGFloat(time)*36, saturation: 1, brightness: 1), duration: 1)
         },
         {(time:Int,delegate:AppDelegate) in
-            delegate.setAllLights(LFXHSBKColor(hue: CGFloat(random()%360), saturation: CGFloat(random()%256)/256, brightness: CGFloat(random()%256)/256), duration: 1)
+            delegate.setAllLights(LFXHSBKColor(hue: CGFloat(arc4random_uniform(360)), saturation: CGFloat(arc4random_uniform(256))/256, brightness: CGFloat(arc4random_uniform(256))/256), duration: 1)
         },
         {(time:Int,delegate:AppDelegate) in
             delegate.setAllLights(LFXHSBKColor(hue:(CGFloat(sin(Double(time*5)/(180*M_PI)))*3600), saturation: 1, brightness: 1), duration: 0.2)
@@ -100,10 +83,41 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
     var effectNames:[String] = ["Standard","Rainbow","Random","Varying Rainbow","Slow Rainbow","Christmas 1","Christmas 2"]
     
     /// The corresponding update time of each effect
-    var updateTimings:[NSTimeInterval] = [1,1,1,0.2,1,1,1]
+    var updateTimings:[TimeInterval] = [1,1,1,0.2,1,1,1]
+    
+    /*
+     CREATING ADDITIONAL EFFECTS
+     
+     Effects are managed by a closure system where each effect is updated periodically and sets the colour of the lights
+     All closure recieve the current time of the lights (An Int value 0 or greater which is increased by 1 every time the lights are updated) and a reference to the AppDelegate to access lighting methods and approved lights
+     All closures are placed in an array
+     The update time periods are in another array and correspond to the same index in the effects array
+     The name of each effect is in another array and corresponds to the same index in the effects array
+     
+     To add your own effects, simply add to the arrays your effect closure, update time and effect name
+     Here is a template for the closures array
+     
+     {(time:Int,delegate:AppDelegate) in
+     *YOUR CODE GOES HERE*
+     }
+     
+     e.g adding a new effect
+     
+     // effect changes lights
+     effects += {(time:Int,delegate:AppDelegate) in
+        delegate.setAllLights(LFXHSBKColor(hue: 0.66, saturation: 1, brightness: 1), duration: 0)
+     }
+     
+     // display name for light
+     effectName += "Blue"
+     
+     // time to update
+     updateTimings += 1
+     
+     */
     
     /// A timer that manages the update of light effects
-    var timer:NSTimer = NSTimer()
+    var timer:Timer = Timer()
     
     /// The current effect option being used
     var effectOption:Int = 0
@@ -121,27 +135,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
     /// The colour of the lights determined by the HSB sliders
     let lightColour = LFXHSBKColor(hue: 0, saturation: 1, brightness: 0)
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        LFXClient.sharedClient().localNetworkContext.allLightsCollection.addLightCollectionObserver(self)
+        LFXClient.shared().localNetworkContext.allLightsCollection.add(self)
         
         let title = NSMenuItem(title: "LIFX Master", action: nil, keyEquivalent: "")
-        title.enabled = false
+        title.isEnabled = false
         
         let lights = NSMenuItem(title: "Lights", action: nil, keyEquivalent: "")
         
-        let quit = NSMenuItem(title: "Quit", action: Selector("quit"), keyEquivalent: "")
+        let quit = NSMenuItem(title: "Quit", action: #selector(AppDelegate.quit), keyEquivalent: "")
         statusItem.image = NSImage(named: "MenuLogo")
   
         let effects = NSMenuItem(title: "Effects", action: nil, keyEquivalent: "")
         
         for name in effectNames {
-            let item = NSMenuItem(title: name, action: Selector("setEffect"), keyEquivalent: "")
+            let item = NSMenuItem(title: name, action: #selector(AppDelegate.setEffect), keyEquivalent: "")
             effectMenu.addItem(item)
         }
         
         let toggle = NSMenuItem(title: "Lights On", action: nil, keyEquivalent: "")
-        toggle.enabled = false
+        toggle.isEnabled = false
         
         let colour = NSMenuItem(title: "Colour", action: nil, keyEquivalent: "")
         colour.submenu = colourMenu
@@ -153,7 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
         
         let colourItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
         colourItem.view = slidersView
-        colourMenu.addItemWithTitle("HSB", action: nil, keyEquivalent: "")
+        colourMenu.addItem(withTitle: "HSB", action: nil, keyEquivalent: "")
         colourMenu.addItem(colourItem)
         
         sliderH.maxValue = 360.0
@@ -167,18 +181,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
         sliderS.target = self
         sliderB.target = self
         
-        sliderH.action = Selector("updateLightColour:")
-        sliderS.action = Selector("updateLightColour:")
-        sliderB.action = Selector("updateLightColour:")
+        sliderH.action = #selector(AppDelegate.updateLightColour(_:))
+        sliderS.action = #selector(AppDelegate.updateLightColour(_:))
+        sliderB.action = #selector(AppDelegate.updateLightColour(_:))
         
         menu.addItem(title)
-        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(lights)
-        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(toggle)
         menu.addItem(colour)
         menu.addItem(effects)
-        menu.addItem(NSMenuItem.separatorItem())
+        menu.addItem(NSMenuItem.separator())
         menu.addItem(quit)
     
         lights.submenu = lightMenu
@@ -186,7 +200,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
         effectMenu.delegate = self
         
         let noLights = NSMenuItem(title: "No Lights", action: nil, keyEquivalent: "")
-        noLights.enabled = false
+        noLights.isEnabled = false
         lightMenu.addItem(noLights)
         
         statusItem.menu = menu
@@ -200,19 +214,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
 
     
     /// Called if light is discovered on network
-    func lightCollection(lightCollection: LFXLightCollection!, didAddLight light: LFXLight!) {
+    func lightCollection(_ lightCollection: LFXLightCollection!, didAdd light: LFXLight!) {
         updateSelectedLights()
     }
     
     /// Called if light is removed from network
-    func lightCollection(lightCollection: LFXLightCollection!, didRemoveLight light: LFXLight!) {
+    func lightCollection(_ lightCollection: LFXLightCollection!, didRemove light: LFXLight!) {
         updateSelectedLights()
     }
 
     /// Updates which lights are selected in the lights menu
     func updateSelectedLights() {
         
-        lights = LFXClient.sharedClient().localNetworkContext.allLightsCollection.lights as! [LFXLight]
+        lights = LFXClient.shared().localNetworkContext.allLightsCollection.lights as! [LFXLight]
         for light in lights {
             if selectedLights[light.label()] == nil {
                 selectedLights[light.label()] = false
@@ -227,18 +241,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
         lightMenu.delegate = self
         
         for light in lights {
-            let item = NSMenuItem(title: "\(light.label())", action: Selector("lightPicked"), keyEquivalent: "")
+            let item = NSMenuItem(title: "\(light.label()!)", action: #selector(AppDelegate.lightPicked), keyEquivalent: "")
             item.target = self
             lightMenu.addItem(item)
-            item.enabled = true
+            item.isEnabled = true
 
         }
         
-        menu.itemAtIndex(2)!.submenu = lightMenu
+        menu.item(at: 2)!.submenu = lightMenu
 
         if lights.isEmpty {
             let noLights = NSMenuItem(title: "No Lights", action: nil, keyEquivalent: "")
-            noLights.enabled = false
+            noLights.isEnabled = false
             lightMenu.addItem(noLights)
         }
         
@@ -266,25 +280,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
         }
         
         if !approvedLights.isEmpty {
-            menu.itemAtIndex(4)!.enabled = true
-            menu.itemAtIndex(4)!.action = Selector("toggleLights")
+            menu.item(at: 4)!.isEnabled = true
+            menu.item(at: 4)!.action = #selector(AppDelegate.toggleLights)
             if approvedLights.count == 1 {
-                toggleState = approvedLights[0].powerState() == LFXPowerState.On
+                toggleState = approvedLights[0].powerState() == LFXPowerState.on
                 if !toggleState {
-                    menu.itemAtIndex(4)!.title = "Light On"
+                    menu.item(at: 4)!.title = "Light On"
                 } else {
-                    menu.itemAtIndex(4)!.title = "Light Off"
+                    menu.item(at: 4)!.title = "Light Off"
                 }
             }
         } else {
-            menu.itemAtIndex(4)!.enabled = false
-            menu.itemAtIndex(4)!.action = nil
+            menu.item(at: 4)!.isEnabled = false
+            menu.item(at: 4)!.action = nil
         }
         
     }
     
     /// Delegate method called when item is highlited, updates selectedItem to last highlighted item
-    func menu(menu: NSMenu, willHighlightItem item: NSMenuItem?) {
+    func menu(_ menu: NSMenu, willHighlight item: NSMenuItem?) {
         if menu === lightMenu {
             selectedItem = item
         } else if menu === effectMenu {
@@ -294,12 +308,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
     
     /// Terminated application
     func quit() {
-        NSApplication.sharedApplication().terminate(self)
+        NSApplication.shared().terminate(self)
 
     }
     
     /// Sets all approvedLights to colour over duration
-    func setAllLights(color:LFXHSBKColor, duration:NSTimeInterval) {
+    func setAllLights(_ color:LFXHSBKColor, duration:TimeInterval) {
         for light in approvedLights {
             light.setColor(color, overDuration: duration)
         }
@@ -307,7 +321,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
     
     /// Sets the current effect based on last selected menu item
     func setEffect() {
-        if let option = effectMenu.itemArray.indexOf(selectedItem!) {
+        if let option = effectMenu.items.index(of: selectedItem!) {
             effectOption = option
             
             setupTimingForOption(option)
@@ -318,47 +332,47 @@ class AppDelegate: NSObject, NSApplicationDelegate, LFXLightObserver, LFXLightCo
     func toggleLights() {
         for light in approvedLights {
             if toggleState {
-                light.setPowerState(.Off)
+                light.setPowerState(.off)
                 
             } else {
-                light.setPowerState(.On)
+                light.setPowerState(.on)
             }
         }
         if toggleState {
-            menu.itemAtIndex(4)!.title = "Light On"
+            menu.item(at: 4)!.title = "Light On"
             toggleState = false
             
         } else {
-            menu.itemAtIndex(4)!.title = "Light Off"
+            menu.item(at: 4)!.title = "Light Off"
             toggleState = true
         }
     }
     
     /// Sets timer for current effect option to update after a period of time
-    func setupTimingForOption(option:Int) {
+    func setupTimingForOption(_ option:Int) {
         effectCount = 0
         effectOption = option
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(updateTimings[effectOption], target: self, selector: Selector("updateLightsEffect"), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: updateTimings[effectOption], target: self, selector: #selector(AppDelegate.updateLightsEffect), userInfo: nil, repeats: true)
         timer.fire()
     }
     
     /// Updates current lighting effect
     func updateLightsEffect() {
         effects[effectOption](effectCount,self)
-        effectCount++
+        effectCount += 1
     }
     
     
     /// Updates the colour of all approvedLights based on HSB slider values
-    func updateLightColour(sender:NSSlider) {
+    func updateLightColour(_ sender:NSSlider) {
         
         if sender === sliderH {
-            lightColour.hue = CGFloat(sliderH.doubleValue)
+            lightColour?.hue = CGFloat(sliderH.doubleValue)
         } else if sender === sliderS {
-            lightColour.saturation = CGFloat(sliderS.doubleValue)
+            lightColour?.saturation = CGFloat(sliderS.doubleValue)
         } else if sender === sliderB {
-            lightColour.brightness = CGFloat(sliderB.doubleValue)
+            lightColour?.brightness = CGFloat(sliderB.doubleValue)
         }
         for light in approvedLights {
             light.setColor(lightColour)
